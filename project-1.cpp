@@ -92,7 +92,7 @@ vector<int> generateRandomArray(int size, int maxValue) {
 
 void saveResults(const string& filename, const vector<pair<int, long long>>& data) {
     ofstream file(filename);
-    file << "Input,Comparisons\n";
+    file << "Input n,Comparisons\n";
     for (const auto& i : data) {
         file << i.first << "," << i.second << "\n";
     }
@@ -108,7 +108,7 @@ void testPartCI() {
     int maxValue = 10000000;
     vector<pair<int, long long>> results;
     
-    cout << left << setw(15) << "Size" << "Comparisons" << endl;
+    cout << left << setw(15) << "Input n" << "Comparisons" << endl;
     cout << string(40, '-') << endl;
     
     for (int size : sizes) {
@@ -142,7 +142,13 @@ void testPartCII() {
         results.push_back({s, comparisonCount});
     }
     
-    saveResults("results_cii.csv", results);
+    ofstream file("results_cii.csv");
+    file << "S value,Comparisons\n";
+    for (const auto& p : results) {
+        file << p.first << "," << p.second << "\n";
+    }
+    file.close();
+    cout << "Results saved to results_cii.csv" << endl;
 }
 
 void testPartCIII() {
@@ -154,7 +160,7 @@ void testPartCIII() {
     int maxValue = 10000000;
     
     ofstream file("results_ciii.csv");
-    file << "Size";
+    file << "Input n";
     for (int s : sValues) {
         file << ",S=" << s;
     }
